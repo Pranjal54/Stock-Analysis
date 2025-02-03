@@ -1,0 +1,336 @@
+/* Root Variables for Theme */
+:root {
+  --bg-color: #f4f4f9;
+  --container-bg: #fff;
+  --text-color: #333;
+  --accent-color: #005f73;
+  --accent-hover: #0a9396;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --input-bg: #ffffff;
+  --border-color: #ccc;
+}
+
+.dark-mode {
+  --bg-color: #121212;
+  --container-bg: #1e1e1e;
+  --text-color: #e0e0e0;
+  --accent-color: #0a9396;
+  --accent-hover: #94d2bd;
+  --box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  --input-bg: #222;
+  --border-color: #444;
+}
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  display: grid;
+  grid-template-areas:
+    "search search search"
+    "chart chart news"
+    "details details news"
+    "market market news";
+  grid-template-columns: 2fr 2fr 1fr;
+  gap: 10px;
+  background-color: var(--container-bg);
+  border-radius: 12px;
+  box-shadow: var(--box-shadow);
+  padding: 20px;
+  transition: background-color 0.3s ease;
+}
+
+/* Search Section */
+.search-section {
+  grid-area: search;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--container-bg);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  width: 100%;
+}
+
+#stockTicker {
+  padding: 12px;
+  flex: 1;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  margin-right: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#searchBtn,
+#themeToggle,#toggleLiveUpdates {
+  padding: 12px 20px;
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-right: 4px;
+}
+
+#searchBtn:hover,
+#themeToggle:hover,#toggleLiveUpdates:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Chart Section */
+.chart-section {
+  grid-area: chart;
+  background-color: var(--container-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+}
+
+.chart-section h2 {
+  color: var(--accent-color);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#chart-container {
+  width: 100%;
+  max-width: 600px;
+  height: 400px; /* Fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--container-bg);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* News Section */
+.news-section {
+  grid-area: news;
+  background-color: var(--container-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+}
+
+.news-section h2 {
+  color: var(--accent-color);
+}
+
+#newsList {
+  list-style: none;
+  padding-left: 0;
+}
+
+#newsList li {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  border-left: 4px solid var(--accent-color);
+}
+
+#newsList li a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#newsList li a:hover {
+  text-decoration: underline;
+}
+
+/* Peer Stocks Section */
+.peer-section {
+  grid-area: peer;
+  background-color: var(--container-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+}
+
+.peer-section h2 {
+  color: var(--accent-color);
+}
+
+/* Stock Details Section */
+#stockInfoContainer {
+  grid-area: details;
+  background-color: var(--container-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stock-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.stock-row:last-child {
+  border-bottom: none;
+}
+
+#stockChart {
+  max-height: 350px; /* Add max-height */
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-color);
+}
+
+.error {
+  color: #ff4444;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: rgba(255, 68, 68, 0.1);
+  margin: 10px 0;
+}
+
+/* Responsive Design */
+/* Mobile devices (320px and up) */
+@media screen and (max-width: 480px) {
+  .container {
+    grid-template-areas:
+      "search"
+      "chart"
+      "details"
+      "market"
+      "news";
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .search-section {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #searchBtn, #themeToggle, #toggleLiveUpdates {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .growth-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablets (481px to 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .container {
+    grid-template-areas:
+      "search search"
+      "chart chart"
+      "details details"
+      "market market"
+      "news news";
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .growth-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Larger tablets and small laptops (769px to 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+      "search search"
+      "chart news"
+      "details news"
+      "market news";
+  }
+}
+
+.market-section {
+  grid-area: market;  /* Change from 'details' to 'market' */
+  background-color: var(--container-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  margin-top: 10px;
+}
+
+.market-indices {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.market-card {
+  background-color: var(--input-bg);
+  padding: 15px;
+  border-radius: 6px;
+  width: 48%;
+}
+
+.positive { color: #22c55e; }
+.negative { color: #ef4444; }
+
+.growth-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.metric-card {
+  background-color: var(--container-bg);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}

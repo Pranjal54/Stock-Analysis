@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Analysis</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+
+  <div class="container">
+    <!-- Search Box -->
+    <div class="search-section">
+      <input type="text" id="stockTicker" placeholder="Enter Stock Ticker (e.g., TCS.NS)">
+      <button id="searchBtn">Search</button>
+      <button id="themeToggle">Toggle Dark Mode</button>
+      <button id="toggleLiveUpdates">Enable Live Updates</button>
+
+    </div>
+
+    <!-- Chart Section -->
+    <div id="stockChartSection" class="chart-section">
+      <h2>Stock Performance</h2>
+  </div>
+
+    <!-- News Section -->
+    <div id="newsSection" class="news-section">
+      <h2>News</h2>
+      <ul id="newsList">
+        <li>News articles will be displayed here.</li>
+      </ul>
+    </div>
+
+    <!-- Stock Details -->
+    <div id="stockInfoContainer" class="details-section">
+      <div id="stockDetails"></div>
+      <div id="keyMetrics"></div>
+    </div>
+
+    <!-- Market Overview -->
+    <div id="marketOverview" class="market-section">
+      <h2>Market Overview</h2>
+      <div class="market-indices">
+        <div id="sensexData" class="market-card"></div>
+        <div id="niftyData" class="market-card"></div>
+      </div>
+      <div id="marketStats" class="market-stats"></div>
+    </div>
+  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial"></script>
+    <script src="script.js"></script>
+
+  
+</body>
+</html>
