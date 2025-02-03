@@ -185,38 +185,49 @@ function displayKeyMetrics(stock) {
 
 // Fetch news data related to the stock
 async function fetchNewsData() {
-  const apiKey = "cdfe24cf82dc474ab40cffdd7f5be4e3";
-  const searchQuery = "Indian stock market OR NSE OR BSE OR Sensex OR Nifty OR 'Indian stocks'";
-  const url = `https://newsapi.org/v2/everything?q=${searchQuery}&apiKey=${apiKey}`;
+    try {
+        // Using Alpha Vantage News API as an alternative
+        const ALPHA_VANTAGE_API_KEY = "YOUR_ALPHA_VANTAGE_API_KEY"; // Replace with your key
+        const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&topics=financial_markets&apikey=${ALPHA_VANTAGE_API_KEY}`;
 
-  try {
-      const response = await fetch(url);
-      if (!response.ok) {
-          throw new Error("Failed to fetch news data");
-      }
-      const newsData = await response.json();
-      displayNewsData(newsData.articles);
-  } catch (error) {
-      console.error(error);
-      document.getElementById("newsSection").innerHTML = `<p class="error">Error fetching news: ${error.message}</p>`;
-  }
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        
+        if (data.feed && data.feed.length > 0) {
+            displayNewsData(data.feed);
+        } else {
+            throw new Error("No news data available");
+        }
+    } catch (error) {
+        console.error("News fetch error:", error);
+        document.getElementById("newsList").innerHTML = 
+            `<li class="error">Unable to load news. Error: ${error.message}</li>`;
+    }
 }
 
-// Display news articles on the page
+// Update the displayNewsData function to match Alpha Vantage's response format
 function displayNewsData(articles) {
-  const newsList = document.getElementById("newsList");
-  if (newsList) {
-      newsList.innerHTML = "";
-      if (articles.length === 0) {
-          newsList.innerHTML = "<li>No news articles found.</li>";
-          return;
-      }
-      articles.slice(0, 8).forEach((article) => {
-          const listItem = document.createElement("li");
-          listItem.innerHTML = `<a href="${article.url}" target="_blank">${article.title}</a>`;
-          newsList.appendChild(listItem);
-      });
-  }
+    const newsList = document.getElementById("newsList");
+    if (!newsList) return;
+
+    newsList.innerHTML = "";
+    if (articles.length === 0) {
+        newsList.innerHTML = "<li>No news articles found.</li>";
+        return;
+    }
+
+    articles.slice(0, 8).forEach((article) => {
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `
+            <a href="${article.url}" target="_blank">
+                ${article.title}
+                <span class="news-time">${new Date(article.time_published).toLocaleDateString()}</span>
+            </a>`;
+        newsList.appendChild(listItem);
+    });
 }
 
 // Display error message
