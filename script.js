@@ -418,7 +418,7 @@ function displayGrowthMetrics(stock) {
     const metricsDiv = document.getElementById("stockChartSection");
     const metrics = {
         "Current Price": stock.regularMarketPrice?.toFixed(2),
-        "Day Change": `${stock.regularMarketChange?.toFixed(2)}%`,
+        "Day Change": `${stock.regularMarketChange?.toFixed(2)}`,
         "Volume": stock.regularMarketVolume?.toLocaleString(),
         "52-Week High": stock.fiftyTwoWeekHigh?.toFixed(2),
         "52-Week Low": stock.fiftyTwoWeekLow?.toFixed(2),
